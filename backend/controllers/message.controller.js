@@ -14,13 +14,13 @@ export const sendMessage = async(req, res) => {
        participants: { $all: [senderId, receiverId] }
     })
     if (!conversation) {
-       await Conversation.create({
+       conversation =   await Conversation.create({
            participants: [ senderId, receiverId]
        })
    
     }
    
-    const newMessage = new Message({
+    const newMessage =  Message.create({
        senderId, 
        receiverId,
        message
@@ -32,8 +32,7 @@ export const sendMessage = async(req, res) => {
       
      }
 
-     await conversation.save();
-     await newMessage.save();
+     await Promise.all([conversation.save(), newMessage.save()]);
 
      res.status(201).json({newMessage})
     

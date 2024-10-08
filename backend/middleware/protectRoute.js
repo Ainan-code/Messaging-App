@@ -16,7 +16,7 @@ import User from "../models/user.model.js";
         res.status(401).json({error: "Invalid token" })
        }
 
-       const user = User.findById(decoded.userId).select("-password")
+       const user = await User.findById(decoded.userId).select("-password")
 
        if (!user) {
         res.status(401).json({error: "User not found" });
