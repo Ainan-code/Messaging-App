@@ -10,7 +10,7 @@
 
 
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 5000;
 
 app.use(express.json()); // allows to get the payload from request.body
 app.use(cookieParser());
