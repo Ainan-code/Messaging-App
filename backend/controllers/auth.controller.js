@@ -69,12 +69,12 @@ export const login = async(req, res) =>  {
 
     if (!user || !isPasswordCorrect) {
 
-      res.status(400).json({error: "Invalid username or password"})
+     return res.status(400).json({error: "Invalid username or password"})
     }
 
    const token =  generateAccessToken(user._id);
 
-    res.status(200).json({
+  return  res.status(200).json({
         _id: user._id,
         fullName: user.fullName,
         username: user.username,
@@ -93,7 +93,7 @@ export const login = async(req, res) =>  {
 
 export const logout = (req, res) =>  {
  try {
-    res.token("jwt", "", {expiresIn: 0});
+   
     res.status(200).json({message: "logout successfully"})
  } catch (error) {
     console.log("error in logout controller", error.message)
