@@ -21,8 +21,8 @@ export const signup = async (req, res) =>  {
 
 
 
-        const boyProfilePic = `https://avatar-placeholder.iran.liara.run/public/boy?username=${username}`
-        const girlProfilePic = `https://avatar-placeholder.iran.liara.run/public/girl?username=${username}`
+        const boyProfilePic = `https://avatar-placeholder.iran.liara.run/public/boy`
+        const girlProfilePic = `https://avatar-placeholder.iran.liara.run/public/girl`
 
       const newUser = new User({
         fullName, 
@@ -33,14 +33,15 @@ export const signup = async (req, res) =>  {
       })
     
       if(newUser) {
-        generateAccessToken(newUser._id)
+      const token =   generateAccessToken(newUser._id)
         await newUser.save();
         
         res.status(201).json({
             _id: newUser._id,
             fullName: newUser.fullName,
             username: newUser.username,
-            profilePic:  newUser.profilePic
+            profilePic:  newUser.profilePic,
+            token: token
         })
 
       } else {

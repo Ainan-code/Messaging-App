@@ -1,6 +1,6 @@
 import React from 'react'
 import { RiLogoutCircleLine } from "react-icons/ri";
-import useLogout from '../../../hooks/useLogout';
+import useLogout from '../../hooks/useLogout';
 const LogoutButton = () => {
 
   const {logout} = useLogout();
