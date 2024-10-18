@@ -7,12 +7,13 @@
  import authRoutes from "./routes/auth.routes.js";
  import messageRoutes from "./routes/message.routes.js";
  import userRoutes from "./routes/user.routes.js";
+ import { app, server } from "./socket/socketio.js";
 
  import connectToMongodb from "./db/dbConnection.js";
 
  dotenv.config();
 
-const app = express();
+
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json({ extended: false })); // allows to get the payload from request.body
@@ -33,7 +34,7 @@ app.use("/api/users", userRoutes);
 
 
 
-app.listen(PORT, () => 
+server.listen(PORT, () => 
     console.log(`server running on ${PORT}`));
     
 connectToMongodb();
