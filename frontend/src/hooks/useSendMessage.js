@@ -9,7 +9,7 @@ import { useAuthContext } from '../context/AuthContext';
     const {authUser} = useAuthContext();
                
 
-    const sendMessage = async(message) => {
+       const sendMessage = async(message) => {
        
           setLoading(true) 
 
@@ -33,6 +33,7 @@ import { useAuthContext } from '../context/AuthContext';
            }
 
            setMessages([...messages, data])
+           console.log(messages);
             
           } catch (error) {
             toast.error(error.message)
